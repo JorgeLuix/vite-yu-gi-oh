@@ -1,23 +1,29 @@
 <template>
+ <div class="col-12">
     <div class="card">
-      <h2>{{ data.name }}</h2>
-      <img :src="data.card_images[0].image_url" alt="">
-      <p>{{ data.desc }}</p>
+      <img :src="card.image_url" :alt="card.name" />
+      <h3>{{ card.name }}</h3>
+      <p>Attribute: {{ card.attribute }}</p>
+      <p>Level/Rank: {{ card.level }}</p>
+      <p>Type: {{ card.type }}</p>
+      <p>Race: {{ card.race }}</p>
+      <p>Attack: {{ card.atk }}</p>
+      <p>Defense: {{ card.def }}</p>
     </div>
+  </div>
   </template>
   
   <script>
   export default {
     name: 'Card',
     props: {
-      data() {
-        return { 
-            type: Object,
-            required: true,
-        }
-      },
+    data: {
+      type: Object,
+      required: true,
     },
-  }
+  },
+    }
+  
   </script>
   
   <style lang="scss" scoped>
