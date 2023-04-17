@@ -1,8 +1,10 @@
 <template>
-     <section class="card-grid">
-        <cardComponent v-for="card in cards" :key="card.id" :card="card">
-           
-        </cardComponent>
+     <section class="container ">
+        <div class="row">
+          <cardComponent v-for="card in cards" :key="card.id" :card="card"
+          class="col-12 col-md-6 col-lg-3 mb-4">
+          </cardComponent>
+       </div>
     </section>
   </template>
   
@@ -21,9 +23,6 @@ import cardComponent from './cardComponent.vue';
   </script>
   
   <style lang="scss" scoped>
-   .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-gap: 1rem;
-   }
+   
+   
   </style>

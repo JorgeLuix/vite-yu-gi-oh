@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <div class="header">header</div>
+  <div class=" container select">selecttype</div>
+  <div class="container p-5 bg-black mt-3">
     <CardGridComponent :cards="cards">
     </CardGridComponent>
   </div>
