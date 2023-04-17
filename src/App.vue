@@ -1,21 +1,27 @@
 <template>
-  <div class="header">header</div>
+  <div class="header">
+    <HeaderComponent/>
+  </div>
   <div class=" container select">selecttype</div>
   <div class="container p-5 bg-black mt-3">
-    <CardGridComponent :cards="cards">
-    </CardGridComponent>
+     <main>
+        <CardGridComponent :cards="cards">
+        </CardGridComponent>
+    </main>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import CardGridComponent from './components/CardGridComponent.vue';
+import HeaderComponent from './components/headerComponent.vue';
 
 export default {
   name: 'App',
   components: {
     CardGridComponent,
-  },
+    HeaderComponent
+},
   data() {
     return {
       cards: [],
