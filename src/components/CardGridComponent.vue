@@ -13,6 +13,10 @@ import cardComponent from './cardComponent.vue';
   export default {
     name: 'CardGrid',
     components: { cardComponent },
+    props: {
+        cards: Object,
+        required: true
+    }
   }
   </script>
   

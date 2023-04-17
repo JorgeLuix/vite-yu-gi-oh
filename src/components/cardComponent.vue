@@ -1,23 +1,23 @@
 <template>
- <div class="col-12">
+ <div class="col-12 col-sm-6 col-md-4 col-lg-12">
     <div class="card">
-      <img :src="card.image_url" :alt="card.name" />
-      <h3>{{ card.name }}</h3>
-      <p>Attribute: {{ card.attribute }}</p>
-      <p>Level/Rank: {{ card.level }}</p>
-      <p>Type: {{ card.type }}</p>
-      <p>Race: {{ card.race }}</p>
-      <p>Attack: {{ card.atk }}</p>
-      <p>Defense: {{ card.def }}</p>
+      <img :src="card.card_images[0].image_url" />
+      <h5>{{ card.name }}</h5>
+      <p> {{ card.archetype }}</p>
+      <p> {{ card.type }}</p>
+      
+      
     </div>
+   
   </div>
+  
   </template>
   
   <script>
   export default {
     name: 'Card',
     props: {
-    data: {
+    card: {
       type: Object,
       required: true,
     },
@@ -31,7 +31,7 @@
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
+    //padding: 1rem;
     text-align: center;
   }
   </style>
