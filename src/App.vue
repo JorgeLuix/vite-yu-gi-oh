@@ -2,18 +2,29 @@
   <div class="header">
     <HeaderComponent/>
   </div>
-  <div class="container">
-  <select v-model="selectedArchetype">
+
+  <div class="container d-flex justify-content-between">
+  <select v-model="selectedtype">
     <option value="">All</option>
-    <option v-for="archetype in archetypes" :key="archetype" :value="archetype">{{ archetype }}</option>
+    <option v-for="type in alltypes" :key="type" :value= "type"> {{ type }} </option>
   </select>
+  <div>
+    <h5>Total Cards: {{ filteredCards.length }}</h5> 
+    </div>
+
 </div>
+
   <div class="container p-5 bg-black mt-3">
      <main>
-        <CardGridComponent :cards="filteredCards">
+       <div class="loader d-flex justify-content-center align-items-center" v-if="isLoading">
+          <i class="fa-solid fa-cog fa-spin"></i>
+      </div>
+        <CardGridComponent v-if="!isLoading" :cards="filteredCards">
         </CardGridComponent>
+       
     </main>
-  </div>
+    
+</div>
 </template>
 
 <script>
@@ -32,24 +43,25 @@ export default {
   data() {
     return {
       cards: [],
-      selectedArchetype:'',
+      selectedtype:'',
+      isLoading: true
     };
   },
   computed: {
-  archetypes() {
-    const archetypes = new Set();//crea un nuovo oggetto Set vuoto, per tenere traccia degli archetipi.
+  alltypes() {
+    const type = new Set();//crea un nuovo oggetto Set vuoto, per tenere traccia degli archetipi.
     this.cards.forEach((card) => {
-      if (card.archetype) {
-        archetypes.add(card.archetype);
+      if (card.type) {
+        type.add(card.type);
       }
     });
-    return Array.from(archetypes);
+    return Array.from(type);
   },
   filteredCards() {
-    if (!this.selectedArchetype) {
+    if (!this.selectedtype) {
       return this.cards;
     }
-    return this.cards.filter((card) => card.archetype === this.selectedArchetype);
+    return this.cards.filter((card) => card.type === this.selectedtype);
   },
 },
   methods: {
@@ -59,6 +71,9 @@ export default {
           this.cards = res.data.data;
           console.log(res.data.data);
         })
+        .finally(() => {
+          this.isLoading = false; //isLoading e false quando i dati sono stati caricati
+        });
     },
   },
   mounted() {
@@ -66,3 +81,16 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.loader {
+  position: absolute;
+  top: 0;
+  left:0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: black;
+  font-size: 4rem;
+}
+</style>
