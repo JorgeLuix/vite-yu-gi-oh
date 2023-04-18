@@ -3,8 +3,8 @@
     <HeaderComponent/>
   </div>
 
-  <div class="container d-flex justify-content-between">
-  <select v-model="selectedtype">
+  <div class="container d-flex justify-content-between pt-3">
+  <select v-model="selectedtype" class="rounded">
     <option value="">All</option>
     <option v-for="type in alltypes" :key="type" :value= "type"> {{ type }} </option>
   </select>
@@ -14,16 +14,14 @@
 
 </div>
 
-  <div class="container p-5 bg-black mt-3">
+  <div class="container bg-dark p-5 mt-3">
      <main>
        <div class="loader d-flex justify-content-center align-items-center" v-if="isLoading">
           <i class="fa-solid fa-cog fa-spin"></i>
       </div>
         <CardGridComponent v-if="!isLoading" :cards="filteredCards">
         </CardGridComponent>
-       
     </main>
-    
 </div>
 </template>
 
